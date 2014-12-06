@@ -4,164 +4,16 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>Etch-A-Sketch</title>
-  
   <script type='text/javascript' src='//code.jquery.com/jquery-1.11.0.js'></script>
-  
-    
+  <script type='text/javascript' src='/script.js'></script>
+  <link rel="stylesheet" type="text/css" href="/style.css">
       <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    
-  
-    
       <script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    
-  
-    
       <script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.3.0/bootbox.min.js"></script>
-    
-  
-    
       <script type='text/javascript' src="http://fonts.googleapis.com/css?family=Comfortaa"></script>
-    
-  
-    
       <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    
-  
-    
       <script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/randomcolor/0.1.1/randomColor.min.js"></script>
-    
-  
-    
       <script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.min.js"></script>
-    
-  
-  <style type='text/css'>
-    .panel {
-    width: 100%;
-}
-#title {
-    height: 100px;
-    line-height: 100px;
-    text-align: center;
-    font-family:'Comfortaa', cursive;
-    font-size: 2.5em;
-    margin: 1px 0px;
-}
-#buttons {
-    text-align: center;
-    padding: 10px 0;
-}
-button {
-    margin: 0px 5px;
-}
-#container {
-    width: 512px;
-    height: 512px;
-    margin: 0 auto;
-    line-height: 0;
-}
-.pixel {
-    padding: 0;
-    margin: 0;
-    line-height: 0;
-    background-color: #eee;
-    display: inline-block;
-}
-.no-select {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-  </style>
-  
-
-
-<script type='text/javascript'>//<![CDATA[ 
-// SETUP
-var colourMode = false;
-var standard = 16;
-var box = 512;
-
-function isNumeric(obj) {
-    return !jQuery.isArray(obj) && (obj - parseFloat(obj) + 1) >= 0;
-}
-
-function prompt() {
-    bootbox.prompt("Enter grid density (e.g. 8):", function (result) {
-        if (result !== null && isNumeric(result)) {
-            $("#container").empty();
-            initGrid(result);
-        }
-    });
-}
-
-function initGrid(size) {
-    if (size < 0) size = 0;
-    else if (size > 64) size = 64;
-    var px = box / size;
-    var string = "<div class=\"pixel\" style=\"width:" + px + "px;height:" + px + "px;\"></div>";
-    for (var i = 0; i < size; i++) {
-        for (var j = 0; j < size; j++) {
-            $("#container").append(string);
-        }
-    }
-    initHover();
-}
-
-function initHover() {
-    if (colourMode) {
-        $(".pixel").mouseenter(function () {
-            if ($(this).css("background-color") !== "rgb(238, 238, 238)") {
-                var block = $.Color($(this).css("background-color"));
-                $(this).css("background-color", block.lightness('-=0.1'));
-            } else {
-                $(this).css("background-color", randomColor({
-                    luminosity: 'light'
-                }));
-            }
-        });
-    } else {
-        $(".pixel").mouseenter(function () {
-            $(this).css("background-color", "#aaa");
-        });
-    }
-}
-
-function initButtons() {
-    $("#clear-button").on("click", function () {
-        $(".pixel").css("background-color", "#eee");
-    });
-    $("#new-button").on("click", function () {
-        prompt();
-    });
-    $("#rainbow-button").on("click", function () {
-        if (colourMode) {
-            colourMode = false;
-        } else {
-            colourMode = true;
-        }
-        $(".pixel").unbind("mouseenter");
-        initHover();
-    });
-
-    // BOOTSTRAP TWEAKS
-    $(".btn").mouseup(function () {
-        $(this).blur();
-    });
-}
-
-// CODE START
-$(document).ready(function () {
-    initGrid(standard);
-    initButtons();
-});//]]>  
-
-</script>
-
-
 </head>
 <body>
   <div class="panel" id="title">Etch-A-Sketch</div>
@@ -173,9 +25,5 @@ $(document).ready(function () {
     </div>
     <div id="container"></div>
 </div>
-  
 </body>
-
-
 </html>
-
