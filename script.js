@@ -1,10 +1,13 @@
+$(window).load(function(){
 // SETUP
 var colourMode = false;
 var standard = 16;
 var box = 512;
+
 function isNumeric(obj) {
     return !jQuery.isArray(obj) && (obj - parseFloat(obj) + 1) >= 0;
 }
+
 function prompt() {
     bootbox.prompt("Enter grid density (e.g. 8):", function (result) {
         if (result !== null && isNumeric(result)) {
@@ -13,6 +16,7 @@ function prompt() {
         }
     });
 }
+
 function initGrid(size) {
     if (size < 0) size = 0;
     else if (size > 64) size = 64;
@@ -25,6 +29,7 @@ function initGrid(size) {
     }
     initHover();
 }
+
 function initHover() {
     if (colourMode) {
         $(".pixel").mouseenter(function () {
@@ -43,6 +48,7 @@ function initHover() {
         });
     }
 }
+
 function initButtons() {
     $("#clear-button").on("click", function () {
         $(".pixel").css("background-color", "#eee");
@@ -59,13 +65,16 @@ function initButtons() {
         $(".pixel").unbind("mouseenter");
         initHover();
     });
+
     // BOOTSTRAP TWEAKS
     $(".btn").mouseup(function () {
         $(this).blur();
     });
 }
+
 // CODE START
 $(document).ready(function () {
     initGrid(standard);
     initButtons();
+});
 });
