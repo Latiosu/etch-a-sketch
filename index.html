@@ -112,28 +112,33 @@ function initHover() {
 }
 
 function initButtons() {
-    $("#clear-button").on("click", function () {
-        $(".pixel").css("background-color", "#eee");
-    });
-    $("#new-button").on("click", function () {
-        prompt();
-    });
-    $("#rainbow-button").on("click", function () {
-        if (colourMode) {
-            colourMode = false;
-        } else {
-            colourMode = true;
-        }
-        $(".pixel").unbind("mouseenter");
-        initHover();
-    });
+  // PREVENT MULTIPLE BINDINGS
+  $("#clear-button").unbind("click");
+  $("#new-button").unbind("click");
+  $("#rainbow-button").unbind("click");
+  
+  $("#clear-button").on("click", function () {
+      $(".pixel").css("background-color", "#eee");
+  });
+  $("#new-button").on("click", function () {
+      prompt();
+  });
+  $("#rainbow-button").on("click", function () {
+      if (colourMode) {
+          colourMode = false;
+      } else {
+          colourMode = true;
+      }
+      $(".pixel").unbind("mouseenter");
+      initHover();
+  });
 
-    // BOOTSTRAP TWEAKS
-    $(".btn").mouseup(function () {
-        $(this).blur();
-    });
+  // BOOTSTRAP TWEAKS
+  $(".btn").mouseup(function () {
+      $(this).blur();
+  });
 }
-$(window).load(function(){
+$(document).ready(function(){
 // CODE START
   initGrid(standard);
   initButtons();
