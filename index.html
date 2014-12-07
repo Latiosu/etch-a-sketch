@@ -60,7 +60,6 @@ button {
   <script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/randomcolor/0.1.1/randomColor.min.js"></script>
   <script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.min.js"></script>
   <script>
-    $(document).ready(function(){
 // SETUP
 var colourMode = false;
 var standard = 16;
@@ -133,7 +132,7 @@ function initButtons() {
         $(this).blur();
     });
 }
-
+$(document).ready(function(){
 // CODE START
   initGrid(standard);
   initButtons();
